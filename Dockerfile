@@ -40,11 +40,11 @@ RUN apt-get update -qq && \
   ## spatial
   libudunits2-dev libgdal-dev \
   ## Tex
-  texlive texlive-xetex texlive-generic-recommended latexmk \
+  texlive texlive-xetex texlive-generic-recommended latexmk pandoc \
   ## Fonts
   fonts-linuxlibertine fonts-roboto texlive-fonts-extra \
   # curl for tagging step
-  curl \
+  curl git \
   # python
   python3-pip python3-venv libffi-dev \
   # ffmpeg for animations in slides
