@@ -7,3 +7,4 @@ Docker file containing standard Ubuntu dependencies
   * But __no__ other R packages
  * Standard additional Ubuntu packages installed
   * git, texlive, etc
+ * Anaconda

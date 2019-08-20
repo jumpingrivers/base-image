@@ -51,5 +51,19 @@ RUN apt-get update -qq && \
   ffmpeg \
   # ssl for R packages
   libssl-dev \
+  # Anacondoa stuff
+  wget bzip2 ca-certificates libglib2.0-0 libxext6 libsm6 libxrender1 \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
+
+# Anaconda stuff
+RUN pip3 install virtualenv && \
+  wget --quiet https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh -O ~/anaconda.sh && \
+  /bin/bash ~/anaconda.sh -b -p /opt/conda && \
+  rm ~/anaconda.sh && \
+  ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+  echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+  echo "conda activate base" >> ~/.bashrc
+
+# Update script
+RUN ln -s /usr/lib/R/site-library/littler/examples/update.r /usr/local/bin/update.r
