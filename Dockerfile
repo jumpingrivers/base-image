@@ -56,6 +56,13 @@ RUN apt-get update -qq && \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
+# Needed for gert
+# Can add above due to conflicts
+RUN apt-get update && \
+    apt-get -y --no-install-recommends install libgit2-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 # Anaconda stuff
 RUN pip3 install virtualenv && \
   wget --quiet https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh -O ~/anaconda.sh && \
