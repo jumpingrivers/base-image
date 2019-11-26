@@ -42,7 +42,7 @@ RUN apt-get update -qq && \
   ## Tex
   texlive texlive-xetex texlive-generic-recommended latexmk pandoc \
   ## Fonts
-  fonts-linuxlibertine fonts-roboto texlive-fonts-extra \
+  fonts-linuxlibertine fonts-roboto texlive-fonts-extra lmodern \
   # curl for tagging step
   curl git \
   # python
@@ -65,12 +65,15 @@ RUN apt-get update && \
 
 # Anaconda stuff
 RUN pip3 install virtualenv && \
-  wget --quiet https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh -O ~/anaconda.sh && \
-  /bin/bash ~/anaconda.sh -b -p /opt/conda && \
-  rm ~/anaconda.sh && \
-  ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
-  echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
-  echo "conda activate base" >> ~/.bashrc
+    pip3 install setuptools && \
+    pip3 install wheel && \
+    pip3 install poetry && \
+    wget --quiet https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh -O ~/anaconda.sh && \
+    /bin/bash ~/anaconda.sh -b -p /opt/conda && \
+    rm ~/anaconda.sh && \
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate base" >> ~/.bashrc
 
 # Update script
 RUN ln -s /usr/lib/R/site-library/littler/examples/update.r /usr/local/bin/update.r
