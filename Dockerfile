@@ -53,6 +53,8 @@ RUN apt-get update -qq && \
   libssl-dev \
   # Anacondoa stuff
   wget bzip2 ca-certificates libglib2.0-0 libxext6 libsm6 libxrender1 \
+  # Graphvis for python analytics notes
+  graphviz \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
