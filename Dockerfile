@@ -74,3 +74,13 @@ RUN pip3 install virtualenv && \
 
 # Update script
 RUN ln -s /usr/lib/R/site-library/littler/examples/update.r /usr/local/bin/update.r
+
+# Add RSPM option header for binary packages
+RUN echo 'options(HTTPUserAgent = sprintf("R/%s R (%s)", getRversion(),
+                                                         paste(getRversion(),
+                                                         R.version$platform,
+                                                         R.version$arch,
+                                                         R.version$os))
+
+                  )' >> /usr/lib/R/etc/Rprofile.site
+
