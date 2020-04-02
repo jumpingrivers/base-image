@@ -78,14 +78,16 @@ RUN python3 -m pip install setuptools virtualenv wheel poetry && \
 RUN ln -s /usr/lib/R/site-library/littler/examples/update.r /usr/local/bin/update.r
 
 # Add RSPM option header for binary packages
+# HTTPUserAgent for within R
+# download.file.extra for Rscript
 RUN echo "options( \
     repos = \
       c(CRAN = 'https://rspm.jumpingrivers.cloud/jrPackagesCRAN/__linux__/bionic/latest', \
         jrinternal = 'https://rspm.jumpingrivers.cloud/jrPackages/latest'), \
-    HTTPUserAgent = sprintf('R/%s R (%s)', getRversion(),              # Within R \
-                               paste(getRversion(), R.version$platform, \
-                                     R.version$arch, R.version$os)), \
-    download.file.extra = sprintf('--header \"User-Agent: R (%s)\"',   # For Rscript -e \
-                                paste(getRversion(), R.version$platform, \
-                                      R.version$arch, R.version$os)))" >> /usr/lib/R/etc/Rprofile.site
+    HTTPUserAgent = sprintf('R/%s R (%s)', getRversion(),               \
+                               paste(getRversion(), R.version['platform'], \
+                                     R.version['arch'], R.version['os'])), \
+    download.file.extra = sprintf('--header \"User-Agent: R (%s)\"',    \
+                                paste(getRversion(), R.version['platform'], \
+                                      R.version['arch'], R.version['os'])))" >> /usr/lib/R/etc/Rprofile.site
 
