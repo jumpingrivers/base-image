@@ -46,7 +46,7 @@ RUN apt-get update -qq && \
   # curl for tagging step
   curl git \
   # python
-  python3-pip python3-venv libffi-dev \
+  python3-pip python3-venv python3-setuptools libffi-dev \
   # ffmpeg for animations in slides
   ffmpeg \
   # ssl for R packages
@@ -66,10 +66,7 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 # Anaconda stuff
-RUN pip3 install virtualenv && \
-    pip3 install setuptools && \
-    pip3 install wheel && \
-    pip3 install poetry && \
+RUN python3 -m pip install setuptools virtualenv wheel poetry && \
     wget --quiet https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh && \
