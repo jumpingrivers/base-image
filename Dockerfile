@@ -83,7 +83,8 @@ RUN ln -s /usr/lib/R/site-library/littler/examples/update.r /usr/local/bin/updat
 RUN echo "options( \
     repos = \
       c(CRAN = 'https://rspm.jumpingrivers.cloud/jrPackagesCRAN/__linux__/bionic/latest', \
-        jrinternal = 'https://rspm.jumpingrivers.cloud/jrPackages/latest'), \
+        jrinternal = 'https://rspm.jumpingrivers.cloud/jrPackages/latest',\
+         jrpackages = 'https://jr-packages.github.io/drat/'), \
     HTTPUserAgent = sprintf('R/%s R (%s)', getRversion(),               \
                                paste(getRversion(), R.version['platform'], \
                                      R.version['arch'], R.version['os'])), \
