@@ -82,8 +82,9 @@ RUN ln -s /usr/lib/R/site-library/littler/examples/update.r /usr/local/bin/updat
 # download.file.extra for Rscript
 RUN echo "options( \
     repos = \
-      c(CRAN = 'https://packagemanager.rstudio.com/all/__linux__/bionic/latest', \
-        jrpublic = 'https://rstudio.jumpingrivers.cloud/package-manager/jumpingrivers/latest',\
+      c(CRAN = 'https://rstudio.jumpingrivers.cloud/package-manager/cran/__linux__/bionic/latest', \ 
+        #CRAN = 'https://packagemanager.rstudio.com/all/__linux__/bionic/latest', \
+        jrpublic = 'https://rstudio.jumpingrivers.cloud/package-manager/jumpingrivers/latest', \
         jrpackages = 'https://jr-packages.github.io/drat/'), \
     HTTPUserAgent = sprintf('R/%s R (%s)', getRversion(),               \
                                paste(getRversion(), R.version['platform'], \
