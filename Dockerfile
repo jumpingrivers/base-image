@@ -77,6 +77,7 @@ RUN python3 -m pip install setuptools virtualenv wheel poetry && \
 # Update script
 RUN ln -s /usr/lib/R/site-library/littler/examples/update.r /usr/local/bin/update.r
 
+RUN Rscript -e "install.packages('Rcpp', repos = 'https://cran.rstudio.com')"
 # Add RSPM option header for binary packages
 # HTTPUserAgent for within R
 # download.file.extra for Rscript
