@@ -60,8 +60,9 @@ RUN apt-get update -qq && \
 
 # Needed for gert
 # Can add above due to conflicts
-RUN apt-get update && \
-    apt-get -y --no-install-recommends install libgit2-dev \
+RUN add-apt-repository ppa:cran/libgit2 \
+    && apt-get update \
+    && apt-get -y --no-install-recommends install libgit2-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
